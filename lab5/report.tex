@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}
+
+\usepackage{fullpage}
+\usepackage{multicol,multirow}
+\usepackage{tabularx}
+\usepackage{ulem}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.png}
+
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection.}{0.3em}{}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection.}{0.3em}{}
+
+\titlespacing{\section}{0pt}{*2}{*2}
+\titlespacing{\subsection}{0pt}{*1}{*1}
+\titlespacing{\subsubsection}{0pt}{*0}{*0}
+\usepackage{listings}
+\lstloadlanguages{Lisp}
+\lstset{extendedchars=false,
+	breaklines=true,
+	breakatwhitespace=true,
+	keepspaces = true,
+	tabsize=2
+}
+\begin{document}
+
+
+\section*{Отчет по лабораторной работе №\,5 
+по курсу \guillemotleft  Функциональное программирование\guillemotright}
+\begin{flushright}
+Студент группы 8О-307 МАИ \textit{Вельтман Лина}, \textnumero 7 по списку \\
+\makebox[7cm]{Контакты: {\tt  kluuo@mail.ru} \hfill} \\
+\makebox[7cm]{Работа выполнена: 14.05.2020 \hfill} \\
+\ \\
+Преподаватель: Иванов Дмитрий Анатольевич, доц. каф. 806 \\
+\makebox[7cm]{Отчет сдан: \hfill} \\
+\makebox[7cm]{Итоговая оценка: \hfill} \\
+\makebox[7cm]{Подпись преподавателя: \hfill} \\
+
+\end{flushright}
+
+\section{Тема работы}
+Обобщённые функции, методы и классы объектов.
+
+\section{Цель работы}
+Научиться определять простейшие классы, порождать экземпляры классов, считывать и изменять значения слотов, научиться определять обобщённые функции и методы.
+
+\section{Задание (вариант №23)}
+Определить обобщённую функцию и методы {\tt on-single-line3-p} - предикат,
+принимающий в качестве аргументов три точки (радиус-вектора) и необязательный параметр {\tt tolerance} (допуск),
+возвращающий {\tt T}, три указанные точки лежат на одной прямой (вычислять с допустимым отклонением {\tt tolerance}).
+Точки могут быть заданы как декартовыми координатами (экземплярами {\tt cart}), так и полярными (экземплярами {\tt polar}).
+
+\begin{lstlisting}[language=Lisp]
+(defgeneric on-single-line3-p (v1 v2 v2 &optional tolerance))
+(defmethod on-single-line3-p ((v1 cart) (v2 cart) (v3 cart) &optional (tolerance 0.001))
+  ...)
+\end{lstlisting}
+
+\section{Оборудование ПЭВМ студента}
+Ноутбук MacBook Pro (13-inch, 2017), процессор 2.3GHz Intel Core i5, память: 8Gb, разрядность системы: 64.
+
+\section{Программное обеспечение ЭВМ студента}
+macOS Catalina 10.15.4, реализация языка SBCL 1.4.16, текстовый редактор Sublime Text 3.
+
+\section{Идея, метод, алгоритм}
+Воспользуемся уравнением прямой, проходящей через 2 точки. Если 3 точки лежат на одной прямой, то для них выполняется равенство:
+$$\frac{x_3 - x_1}{x_2 - x_1} = \frac{y_3 - y_1}{y_2 -y_1}.$$
+Чтобы избежать погрешностей при делении, заменим частные на произведения:
+$$(x_2 - x_1)*(y_3 - y_1) = (x_3 - x_1)*(y_2 - y_1).$$
+Функция {\tt on-single-line3-p} проверяет выполнение вышеприведенного равенства для всех элементов списка с помощью функции {\tt on-single-line3}. Функция умеет работать как с декартовыми координатами, так и с полярными.
+
+\section{Сценарий выполнения работы}
+
+\section{Распечатка программы и её результаты}
+
+\subsection{Исходный код}
+\lstinputlisting{lab5_23.lisp}
+
+\subsection{Результаты работы}
+\lstinputlisting{log.txt}
+
+\section{Дневник отладки}
+\begin{tabular}{|l|p{180pt}|p{180pt}|}
+\hline
+Дата & Событие & Действие по исправлению \\ \hline
+19.05.2020 & Некорректная работа с полярными координатами & Добавлена функция по обработке полярных координат\\
+\hline
+\end{tabular}
+
+\section{Замечания, выводы}
+Благодаря данной лабораторной работы я познакомилась с классами и обобщенными функциями в языке Common Lisp. Простой и понятный синтаксис для создания классов является преимуществом. Также хотелось бы упомянуть, что обощенные функции позволяют не создавать несколько похожих функций для разных классов, а просто написать реализации одной функции, которая будет применима для нескольких классов, что очень удобно.
+
+\end{document}

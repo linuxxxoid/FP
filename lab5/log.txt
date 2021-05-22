@@ -1,0 +1,55 @@
+MacBook-Pro-Lina:lab5 linuxoid$ sbcl
+This is SBCL 1.4.16, an implementation of ANSI Common Lisp.
+More information about SBCL is available at <http://www.sbcl.org/>.
+
+SBCL is free software, provided as is, with absolutely no warranty.
+It is mostly in the public domain; some portions are provided under
+BSD-style licenses.  See the CREDITS and COPYING files in the
+distribution for more information.
+* (compile-file "./lab5_23.lisp")
+; compiling file "/Users/linuxoid/Desktop/VUZICH/FP/lab5/lab5_23.lisp" (written 19 MAY 2020 02:37:15 PM):
+; compiling (DEFUN SQUARE ...)
+; compiling (DEFCLASS CART ...)
+; compiling (DEFMETHOD PRINT-OBJECT ...)
+; compiling (DEFCLASS POLAR ...)
+; compiling (DEFMETHOD PRINT-OBJECT ...)
+; compiling (DEFMETHOD RADIUS ...)
+; compiling (DEFMETHOD ANGLE ...)
+; compiling (DEFMETHOD CART-X ...)
+; compiling (DEFMETHOD CART-Y ...)
+; compiling (DEFUN ON-SINGLE-LINE3 ...)
+; compiling (DEFGENERIC ON-SINGLE-LINE3-P ...)
+; compiling (DEFMETHOD ON-SINGLE-LINE3-P ...)
+; compiling (DEFMETHOD ON-SINGLE-LINE3-P ...)
+
+; wrote /Users/linuxoid/Desktop/VUZICH/FP/lab5/./lab5_23.fasl
+; compilation finished in 0:00:00.028
+#P"/Users/linuxoid/Desktop/VUZICH/FP/lab5/lab5_23.fasl"
+NIL
+NIL
+* (load "lab5_23.lisp")
+T
+* (on-single-line3-p (make-instance 'cart :x 5 :y 6)
+		     (make-instance 'cart :x 7 :y 8)
+		     (make-instance 'cart :x 9 :y 4))
+NIL
+* (on-single-line3-p (make-instance 'cart :x 1 :y 2)
+		     (make-instance 'cart :x 2 :y 4)
+		     (make-instance 'cart :x 0 :y 1))
+NIL
+* (on-single-line3-p (make-instance 'cart :x 4 :y 8.00232)
+		     (make-instance 'cart :x 5 :y 10.0)
+		     (make-instance 'cart :x 5.00034 :y 10.0001))
+T
+* (on-single-line3-p (make-instance 'polar :radius 1 :angle (/ pi 2))
+                     (make-instance 'polar :radius 2 :angle (/ pi 2))
+                     (make-instance 'polar :radius 3 :angle (/ pi 2)))
+T
+* (on-single-line3-p (make-instance 'polar :radius 3 :angle 1)
+                     (make-instance 'polar :radius 5.01 :angle 0.3)
+                     (make-instance 'polar :radius 8 :angle 2.02))
+NIL
+* (on-single-line3-p (make-instance 'polar :radius 1 :angle 1)
+                     (make-instance 'polar :radius 3 :angle 1)
+                     (make-instance 'polar :radius 4 :angle 1.000001))
+T
