@@ -1,0 +1,44 @@
+(base) MacBook-Pro-Lina:lab1 linuxoid$ sbcl
+This is SBCL 1.4.16, an implementation of ANSI Common Lisp.
+More information about SBCL is available at <http://www.sbcl.org/>.
+
+SBCL is free software, provided as is, with absolutely no warranty.
+It is mostly in the public domain; some portions are provided under
+BSD-style licenses.  See the CREDITS and COPYING files in the
+distribution for more information.
+* (compile-file "./lab1_7.lisp")
+; compiling file "/Users/linuxoid/Desktop/VUZICH/FP/lab1/lab1_7.lisp" (written 30 MAR 2020 08:20:45 PM):
+; compiling (DEFUN CHECKER ...)
+; compiling (DEFUN THREE-SQUARE ...)
+
+; wrote /Users/linuxoid/Desktop/VUZICH/FP/lab1/./lab1_7.fasl
+; compilation finished in 0:00:00.016
+#P"/Users/linuxoid/Desktop/VUZICH/FP/lab1/lab1_7.fasl"
+NIL
+NIL
+* (load "lab1_7.fasl")
+T
+* (three-square 4 5 6)
+16
+25
+36
+* (three-square -1.1 5.5 0)
+-1.1
+30.25
+0
+* (three-square 0 0 0)
+0
+0
+0
+* (three-square -50 -4.5 -100.001)
+-50
+-4.5
+-100.001
+* (three-square 12.5 6.0006 32)
+156.25
+36.0072
+1024
+* (three-square -0.000001 0.0 0.00001)
+-1.0e-6
+0.0
+9.9999994e-11
