@@ -1,0 +1,50 @@
+MacBook-Pro-Lina:lab4 linuxoid$ sbcl
+This is SBCL 1.4.16, an implementation of ANSI Common Lisp.
+More information about SBCL is available at <http://www.sbcl.org/>.
+
+SBCL is free software, provided as is, with absolutely no warranty.
+It is mostly in the public domain; some portions are provided under
+BSD-style licenses.  See the CREDITS and COPYING files in the
+distribution for more information.
+* (compile-file "./lab4_37.lisp")
+; compiling file "/Users/linuxoid/Desktop/VUZICH/FP/lab4/lab4_37.lisp" (written 10 MAY 2020 07:01:00 PM):
+; compiling (DEFUN RUSSIAN-UPPER-CASE-P ...)
+; compiling (DEFUN RUSSIAN-CHAR-DOWNCASE ...)
+; compiling (DEFUN RUSSIAN-STRING-DOWNCASE ...)
+; compiling (DEFUN PARSING_STR ...)
+; compiling (DEFUN DOUBLE_FIND ...)
+; compiling (DEFUN FINDING-THE-WORD ...)
+; compiling (DEFUN FIND-THE-WORD ...)
+
+; wrote /Users/linuxoid/Desktop/VUZICH/FP/lab4/./lab4_37.fasl
+; compilation finished in 0:00:00.039
+#P"/Users/linuxoid/Desktop/VUZICH/FP/lab4/lab4_37.fasl"
+NIL
+NIL
+* (load "lab4_37.fasl")
+T
+* (find-the-word "знать" '("Неприятности случаются." "Главное - это знать, что тебе всегда придут на помощь твои друзья!"))
+14
+1
+* (find-the-word "б" '("Когда бы жизнь домашним кругом" "я б ограничить захотел."))
+2
+1
+* (find-the-word "house" '("I have a big field." "I've constructed a wonderful house on this field." "I'm looking forward for you to see it!"))
+29
+1
+* (find-the-word "mouse" '("I have a big field." "I've constructed a wonderful house on this field." "I'm looking forward for you to see it!"))
+NIL
+* (find-the-word "" '())
+NIL
+* (find-the-word "Girl" '("You're a pretty girl!" "Girl, help me with this task, please." "I cannot find my book..."))
+16
+0
+* (find-the-word "fOrCe" '("Hello there!" "General Kenobi!" "MaY tHe FoRcE bE wItH yoU!" "My YoUng PadAwaN!" "ThrouGh the fOrCe wE gaIn pOweRrRrr!"))
+8
+2
+* (find-the-word "9nine9" '("8888! iujo" "9 8 9 9" "9nine 9" "!9nine! and twenty four" "and that's 9nine9"))
+11
+4
+* (find-the-word "Захотел" '("Я бы очень хотела поступить по-другому." "Но он решительно захотел напомнить мне, что захотел для меня иной участи. "))
+17
+1
